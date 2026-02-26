@@ -1,6 +1,8 @@
 namespace SpriteKind {
     export const button = SpriteKind.create()
     export const placeholder = SpriteKind.create()
+    export const wall = SpriteKind.create()
+    export const bone1 = SpriteKind.create()
 }
 function actselected () {
     debug.sayText("act")
@@ -17,6 +19,63 @@ function setvars () {
     guimode = 0
     inbattle = 0
     damage = 100
+}
+function sans_attack1 () {
+    inbattle = 1
+    bone_end = sprites.create(img`
+        . 
+        . 
+        1 
+        1 
+        1 
+        1 
+        1 
+        1 
+        1 
+        1 
+        1 
+        1 
+        1 
+        1 
+        1 
+        1 
+        1 
+        1 
+        1 
+        1 
+        1 
+        1 
+        1 
+        1 
+        1 
+        1 
+        1 
+        1 
+        1 
+        1 
+        1 
+        1 
+        1 
+        1 
+        1 
+        1 
+        1 
+        1 
+        1 
+        1 
+        1 
+        1 
+        1 
+        1 
+        1 
+        1 
+        1 
+        1 
+        . 
+        . 
+        `, SpriteKind.wall)
+    bone_end.setPosition(17, 72)
+    bone1()
 }
 function bootupgui () {
     selectmode = 1
@@ -284,15 +343,24 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
         selectedbutton += -1
     }
 })
-function sans_attack () {
-    inbattle = 1
-    bone = sprites.create(assets.image`myImage4`, SpriteKind.Enemy)
-}
 function turn_ended_reset_vars () {
     gui_message_number = 0
     guimode = 0
     guitext = ""
     gui_message_number = 0
+}
+function bone1 () {
+    bone = sprites.create(assets.image`myImage4`, SpriteKind.Enemy)
+    bone.setPosition(142, 81)
+    bone.setVelocity(-50, 0)
+    bone.setFlag(SpriteFlag.DestroyOnWall, true)
+}
+function sansturn () {
+    sans_attack1()
+    attacknumber = randint(1, 1)
+    if (attacknumber == 1) {
+        sans_attack1()
+    }
 }
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     if (selectmode == 1) {
@@ -305,8 +373,9 @@ function mercyselected () {
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     damage += -1
 })
-let guitext = ""
+let attacknumber = 0
 let bone: Sprite = null
+let guitext = ""
 let selectedbutton = 0
 let gui_message_number = 0
 let health: Sprite = null
@@ -321,6 +390,7 @@ let fightbutton_left: Sprite = null
 let gui: Sprite = null
 let mySprite: Sprite = null
 let selectmode = 0
+let bone_end: Sprite = null
 let damage = 0
 let inbattle = 0
 let mercybutton = 0
@@ -358,7 +428,7 @@ forever(function () {
             }
             if (gui_message_number == 6) {
                 turn_ended_reset_vars()
-                sans_attack()
+                sansturn()
             }
         }
     }
