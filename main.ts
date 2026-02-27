@@ -3,6 +3,7 @@ namespace SpriteKind {
     export const placeholder = SpriteKind.create()
     export const wall = SpriteKind.create()
     export const bone1 = SpriteKind.create()
+    export const sans = SpriteKind.create()
 }
 function actselected () {
     debug.sayText("act")
@@ -76,11 +77,48 @@ function sans_attack1 () {
         `, SpriteKind.wall)
     bone_end.setPosition(17, 72)
     bone1()
+    timer.after(150, function () {
+        bone2()
+        timer.after(150, function () {
+            bone3()
+            timer.after(150, function () {
+                bone4()
+                timer.after(150, function () {
+                    bone6()
+                    timer.after(150, function () {
+                        bone7()
+                        timer.after(150, function () {
+                            bone8()
+                        })
+                    })
+                })
+            })
+        })
+    })
 }
 function bootupgui () {
     selectmode = 1
     tiles.setCurrentTilemap(tilemap`level`)
     info.setScore(100)
+    sans = sprites.create(img`
+        . . . . . . . 1 1 . . . . . . . 
+        . . . . . 1 1 1 1 1 1 . . . . . 
+        . . . 1 1 1 1 1 1 1 1 1 1 . . . 
+        . . 1 1 f f 1 1 1 1 f f 1 1 . . 
+        . 1 1 1 f f 1 1 1 1 f f 1 1 1 . 
+        . 1 1 1 1 1 1 1 1 1 1 1 1 1 1 . 
+        . 1 1 1 1 1 1 1 1 1 1 1 1 1 1 . 
+        . 1 1 1 f 1 f 1 1 f 1 1 f 1 1 . 
+        . 1 1 f f 1 f 1 1 f 1 1 f f 1 . 
+        . . 1 1 1 1 f 1 1 f 1 1 1 1 . . 
+        . . . 1 1 f f 1 1 f f 1 1 . . . 
+        . . . . . 1 1 1 1 1 1 . . . . . 
+        . . . . . . . 1 1 . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `, SpriteKind.sans)
+    sans.setPosition(74, 39)
     mySprite = sprites.create(img`
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
@@ -325,6 +363,13 @@ function itemdecider () {
     }
     selectmode = 0
 }
+function bone6 () {
+    bone62 = sprites.create(assets.image`myImage4`, SpriteKind.Enemy)
+    scaling.scaleByPixels(bone62, 30, ScaleDirection.Vertically, ScaleAnchor.Bottom, false)
+    bone62.setPosition(142, 81)
+    bone62.setVelocity(-50, 0)
+    bone62.setFlag(SpriteFlag.DestroyOnWall, true)
+}
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (selectmode == 1) {
         itemdecider()
@@ -351,9 +396,17 @@ function turn_ended_reset_vars () {
 }
 function bone1 () {
     bone = sprites.create(assets.image`myImage4`, SpriteKind.Enemy)
+    scaling.scaleByPixels(bone, 10, ScaleDirection.Vertically, ScaleAnchor.Bottom, false)
     bone.setPosition(142, 81)
     bone.setVelocity(-50, 0)
     bone.setFlag(SpriteFlag.DestroyOnWall, true)
+}
+function bone7 () {
+    bone72 = sprites.create(assets.image`myImage4`, SpriteKind.Enemy)
+    scaling.scaleByPixels(bone72, 20, ScaleDirection.Vertically, ScaleAnchor.Bottom, false)
+    bone72.setPosition(142, 81)
+    bone72.setVelocity(-50, 0)
+    bone72.setFlag(SpriteFlag.DestroyOnWall, true)
 }
 function sansturn () {
     sans_attack1()
@@ -370,14 +423,56 @@ controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
 function mercyselected () {
     debug.sayText("mercy")
 }
+function bone2 () {
+    bone22 = sprites.create(assets.image`myImage4`, SpriteKind.Enemy)
+    scaling.scaleByPixels(bone22, 20, ScaleDirection.Vertically, ScaleAnchor.Bottom, false)
+    bone22.setPosition(142, 81)
+    bone22.setVelocity(-50, 0)
+    bone22.setFlag(SpriteFlag.DestroyOnWall, true)
+}
+function bone3 () {
+    bone32 = sprites.create(assets.image`myImage4`, SpriteKind.Enemy)
+    scaling.scaleByPixels(bone32, 40, ScaleDirection.Vertically, ScaleAnchor.Bottom, false)
+    bone32.setPosition(142, 81)
+    bone32.setVelocity(-50, 0)
+    bone32.setFlag(SpriteFlag.DestroyOnWall, true)
+}
+function bone5 () {
+    bone52 = sprites.create(assets.image`myImage4`, SpriteKind.Enemy)
+    scaling.scaleByPixels(bone52, 40, ScaleDirection.Vertically, ScaleAnchor.Bottom, false)
+    bone52.setPosition(142, 81)
+    bone52.setVelocity(-50, 0)
+    bone52.setFlag(SpriteFlag.DestroyOnWall, true)
+}
+function bone4 () {
+    bone42 = sprites.create(assets.image`myImage4`, SpriteKind.Enemy)
+    scaling.scaleByPixels(bone42, 50, ScaleDirection.Vertically, ScaleAnchor.Bottom, false)
+    bone42.setPosition(142, 81)
+    bone42.setVelocity(-50, 0)
+    bone42.setFlag(SpriteFlag.DestroyOnWall, true)
+}
+function bone8 () {
+    bone82 = sprites.create(assets.image`myImage4`, SpriteKind.Enemy)
+    scaling.scaleByPixels(bone82, 10, ScaleDirection.Vertically, ScaleAnchor.Bottom, false)
+    bone82.setPosition(142, 81)
+    bone82.setVelocity(-50, 0)
+    bone82.setFlag(SpriteFlag.DestroyOnWall, true)
+}
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     damage += -1
 })
+let bone82: Sprite = null
+let bone42: Sprite = null
+let bone52: Sprite = null
+let bone32: Sprite = null
+let bone22: Sprite = null
 let attacknumber = 0
+let bone72: Sprite = null
 let bone: Sprite = null
 let guitext = ""
 let selectedbutton = 0
 let gui_message_number = 0
+let bone62: Sprite = null
 let health: Sprite = null
 let mercybutton_right: Sprite = null
 let mercybutton_left: Sprite = null
@@ -389,6 +484,7 @@ let fightbutton_right: Sprite = null
 let fightbutton_left: Sprite = null
 let gui: Sprite = null
 let mySprite: Sprite = null
+let sans: Sprite = null
 let selectmode = 0
 let bone_end: Sprite = null
 let damage = 0
@@ -401,12 +497,12 @@ let guimode = 0
 let debug: Sprite = null
 bootupgui()
 forever(function () {
+    gui.sayText(guitext)
+})
+forever(function () {
     if (inbattle == 1) {
         controller.moveSprite(mySprite)
     }
-})
-forever(function () {
-    gui.sayText(guitext)
 })
 forever(function () {
     if (actbutton == 1) {
@@ -430,6 +526,162 @@ forever(function () {
                 turn_ended_reset_vars()
                 sansturn()
             }
+        }
+    }
+})
+forever(function () {
+    if (selectmode == 1) {
+        if (Fightbutton == 0) {
+            fightbutton_left.setImage(img`
+                4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+                4 . . . . . . . . . . . . . . . 
+                4 . . . . . . . . 4 4 4 4 . . 4 
+                4 . . . . . . . . 4 . . . . . 4 
+                4 . . . . . 4 4 . 4 . . . . . 4 
+                4 . . . . . 4 4 . 4 . . . . . 4 
+                4 . . . . 4 4 . . 4 . . . . . 4 
+                4 . . . . 4 4 . . 4 4 4 4 . . 4 
+                4 . 4 . 4 4 . . . 4 . . . . . 4 
+                4 . . 4 4 4 . . . 4 . . . . . 4 
+                4 . . 4 4 4 . . . 4 . . . . . 4 
+                4 . . 4 4 . 4 . . 4 . . . . . 4 
+                4 . 4 4 . . . . . 4 . . . . . 4 
+                4 . 4 4 . . . . . . . . . . . . 
+                4 . . . . . . . . . . . . . . . 
+                4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+                `)
+            fightbutton_right.setImage(img`
+                4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+                . . . . . . . . . . . . . . . 4 
+                . 4 4 4 4 . . 4 . . 4 . 4 4 4 4 
+                . 4 . . . . . 4 . . 4 . . 4 . 4 
+                . 4 . . . . . 4 . . 4 . . 4 . 4 
+                . 4 . . . . . 4 . . 4 . . 4 . 4 
+                . 4 . . . . . 4 . . 4 . . 4 . 4 
+                . 4 . . 4 4 . 4 4 4 4 . . 4 . 4 
+                . 4 . . . 4 . 4 . . 4 . . 4 . 4 
+                . 4 . . . 4 . 4 . . 4 . . 4 . 4 
+                . 4 . . . 4 . 4 . . 4 . . 4 . 4 
+                . 4 . . 4 4 . 4 . . 4 . . 4 . 4 
+                . 4 4 4 4 4 . 4 . . 4 . . 4 . 4 
+                . . . . . . . . . . . . . . . 4 
+                . . . . . . . . . . . . . . . 4 
+                4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+                `)
+        }
+        if (actbutton == 0) {
+            actbutton_left.setImage(img`
+                4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+                4 . . . . . . . . . . . . . . . 
+                4 . . . . . . . 4 4 4 4 4 4 4 . 
+                4 . 4 4 . . . . 4 . . . . . 4 . 
+                4 . . . 4 . . . 4 . . . . . 4 . 
+                4 . 4 . . 4 . . 4 4 . . . 4 4 . 
+                4 . . 4 . 4 . . 4 4 4 4 4 4 4 . 
+                4 . . 4 . 4 . . 4 4 . . . 4 4 . 
+                4 . . 4 . 4 . . 4 . . . . . 4 . 
+                4 . 4 . . 4 . . 4 . . . . . 4 . 
+                4 . . . 4 . . . 4 . . . . . 4 . 
+                4 . 4 4 . . . . 4 . . . . . 4 . 
+                4 . . . . . . . 4 . . . . . 4 . 
+                4 . . . . . . . . . . . . . . . 
+                4 . . . . . . . . . . . . . . . 
+                4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+                `)
+            actbutton_right.setImage(img`
+                4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+                . . . . . . . . . . . . . . . 4 
+                . 4 4 4 4 4 . 4 4 4 4 4 4 4 . 4 
+                . 4 . . . . . . . . 4 . . . . 4 
+                . 4 . . . . . . . . 4 . . . . 4 
+                . 4 . . . . . . . . 4 . . . . 4 
+                . 4 . . . . . . . . 4 . . . . 4 
+                . 4 . . . . . . . . 4 . . . . 4 
+                . 4 . . . . . . . . 4 . . . . 4 
+                . 4 . . . . . . . . 4 . . . . 4 
+                . 4 . . . . . . . . 4 . . . . 4 
+                . 4 . . . . . . . . 4 . . . . 4 
+                . 4 4 4 4 4 . . . . 4 . . . . 4 
+                . . . . . . . . . . . . . . . 4 
+                . . . . . . . . . . . . . . . 4 
+                4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+                `)
+        }
+        if (itembutton == 0) {
+            itembutton_left.setImage(img`
+                4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+                4 . . . . . . . . . . . . . . . 
+                4 . . . . . . . 4 4 4 4 4 . 4 4 
+                4 . . . . . . . . . 4 . . . . . 
+                4 . 4 . 4 . 4 . . . 4 . . . . . 
+                4 . . 4 4 4 . . . . 4 . . . . . 
+                4 . . . 4 . . . . . 4 . . . . . 
+                4 . . 4 4 4 . . . . 4 . . . . . 
+                4 . . 4 4 4 4 . . . 4 . . . . . 
+                4 . 4 4 . . 4 4 . . 4 . . . . . 
+                4 . 4 . 4 4 . 4 . . 4 . . . . . 
+                4 . 4 . 4 4 . 4 . . 4 . . . . . 
+                4 . . 4 . . 4 4 4 4 4 4 4 . . . 
+                4 . . . 4 4 4 . . . . . . . . . 
+                4 . . . . . . . . . . . . . . . 
+                4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+                `)
+            itembutton_right.setImage(img`
+                4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+                . . . . . . . . . . . . . . . 4 
+                4 4 4 4 . 4 4 4 4 . 4 . . . 4 4 
+                . 4 . . . 4 . . . . 4 4 . 4 4 4 
+                . 4 . . . 4 . . . . 4 4 . 4 4 4 
+                . 4 . . . 4 . . . . 4 . 4 . 4 4 
+                . 4 . . . 4 . . . . 4 . . . 4 4 
+                . 4 . . . 4 4 4 4 . 4 . . . 4 4 
+                . 4 . . . 4 . . . . 4 . . . 4 4 
+                . 4 . . . 4 . . . . 4 . . . 4 4 
+                . 4 . . . 4 . . . . 4 . . . 4 4 
+                . 4 . . . 4 . . . . 4 . . . 4 4 
+                . 4 . . . 4 . . . . 4 . . . 4 4 
+                . 4 . . . 4 4 4 4 . 4 . . . 4 4 
+                . . . . . . . . . . . . . . . 4 
+                4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+                `)
+        }
+        if (mercybutton == 0) {
+            mercybutton_left.setImage(img`
+                4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+                4 . . . . . . . . . . . . . . . 
+                4 . . . . . . . 4 . . . 4 . 4 4 
+                4 . . . . . . . 4 4 . 4 4 . 4 . 
+                4 . 4 . . . 4 . 4 4 . 4 4 . 4 . 
+                4 . . 4 . 4 . . 4 . 4 . 4 . 4 . 
+                4 . . 4 . 4 . . 4 . . . 4 . 4 . 
+                4 . . . 4 . . . 4 . . . 4 . 4 4 
+                4 . . . 4 . . . 4 . . . 4 . 4 . 
+                4 . . 4 . 4 . . 4 . . . 4 . 4 . 
+                4 . . 4 . 4 . . 4 . . . 4 . 4 . 
+                4 . 4 . . . 4 . 4 . . . 4 . 4 . 
+                4 . . . . . . . 4 . . . 4 . 4 . 
+                4 . . . . . . . 4 . . . 4 . 4 4 
+                4 . . . . . . . . . . . . . . . 
+                4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+                `)
+            mercybutton_right.setImage(img`
+                4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+                . . . . . . . . . . . . . . . 4 
+                4 4 . 4 4 4 . . 4 4 4 . 4 . 4 4 
+                . . . 4 . . 4 . 4 . . . 4 . 4 4 
+                . . . 4 . . 4 . 4 . . . 4 . 4 4 
+                . . . 4 . . 4 . 4 . . . 4 . 4 4 
+                . . . 4 . 4 . . 4 . . . . 4 . 4 
+                4 4 . 4 4 . . . 4 . . . . 4 . 4 
+                . . . 4 . 4 . . 4 . . . . 4 . 4 
+                . . . 4 . . 4 . 4 . . . . 4 . 4 
+                . . . 4 . . 4 . 4 . . . . 4 . 4 
+                . . . 4 . . 4 . 4 . . . . 4 . 4 
+                . . . 4 . . 4 . 4 . . . . 4 . 4 
+                4 4 . 4 . . 4 . 4 4 4 . . 4 . 4 
+                . . . . . . . . . . . . . . . 4 
+                4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
+                `)
         }
     }
 })
@@ -622,160 +874,4 @@ forever(function () {
 })
 forever(function () {
     health.sayText("" + damage + "/100")
-})
-forever(function () {
-    if (selectmode == 1) {
-        if (Fightbutton == 0) {
-            fightbutton_left.setImage(img`
-                4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
-                4 . . . . . . . . . . . . . . . 
-                4 . . . . . . . . 4 4 4 4 . . 4 
-                4 . . . . . . . . 4 . . . . . 4 
-                4 . . . . . 4 4 . 4 . . . . . 4 
-                4 . . . . . 4 4 . 4 . . . . . 4 
-                4 . . . . 4 4 . . 4 . . . . . 4 
-                4 . . . . 4 4 . . 4 4 4 4 . . 4 
-                4 . 4 . 4 4 . . . 4 . . . . . 4 
-                4 . . 4 4 4 . . . 4 . . . . . 4 
-                4 . . 4 4 4 . . . 4 . . . . . 4 
-                4 . . 4 4 . 4 . . 4 . . . . . 4 
-                4 . 4 4 . . . . . 4 . . . . . 4 
-                4 . 4 4 . . . . . . . . . . . . 
-                4 . . . . . . . . . . . . . . . 
-                4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
-                `)
-            fightbutton_right.setImage(img`
-                4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
-                . . . . . . . . . . . . . . . 4 
-                . 4 4 4 4 . . 4 . . 4 . 4 4 4 4 
-                . 4 . . . . . 4 . . 4 . . 4 . 4 
-                . 4 . . . . . 4 . . 4 . . 4 . 4 
-                . 4 . . . . . 4 . . 4 . . 4 . 4 
-                . 4 . . . . . 4 . . 4 . . 4 . 4 
-                . 4 . . 4 4 . 4 4 4 4 . . 4 . 4 
-                . 4 . . . 4 . 4 . . 4 . . 4 . 4 
-                . 4 . . . 4 . 4 . . 4 . . 4 . 4 
-                . 4 . . . 4 . 4 . . 4 . . 4 . 4 
-                . 4 . . 4 4 . 4 . . 4 . . 4 . 4 
-                . 4 4 4 4 4 . 4 . . 4 . . 4 . 4 
-                . . . . . . . . . . . . . . . 4 
-                . . . . . . . . . . . . . . . 4 
-                4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
-                `)
-        }
-        if (actbutton == 0) {
-            actbutton_left.setImage(img`
-                4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
-                4 . . . . . . . . . . . . . . . 
-                4 . . . . . . . 4 4 4 4 4 4 4 . 
-                4 . 4 4 . . . . 4 . . . . . 4 . 
-                4 . . . 4 . . . 4 . . . . . 4 . 
-                4 . 4 . . 4 . . 4 4 . . . 4 4 . 
-                4 . . 4 . 4 . . 4 4 4 4 4 4 4 . 
-                4 . . 4 . 4 . . 4 4 . . . 4 4 . 
-                4 . . 4 . 4 . . 4 . . . . . 4 . 
-                4 . 4 . . 4 . . 4 . . . . . 4 . 
-                4 . . . 4 . . . 4 . . . . . 4 . 
-                4 . 4 4 . . . . 4 . . . . . 4 . 
-                4 . . . . . . . 4 . . . . . 4 . 
-                4 . . . . . . . . . . . . . . . 
-                4 . . . . . . . . . . . . . . . 
-                4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
-                `)
-            actbutton_right.setImage(img`
-                4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
-                . . . . . . . . . . . . . . . 4 
-                . 4 4 4 4 4 . 4 4 4 4 4 4 4 . 4 
-                . 4 . . . . . . . . 4 . . . . 4 
-                . 4 . . . . . . . . 4 . . . . 4 
-                . 4 . . . . . . . . 4 . . . . 4 
-                . 4 . . . . . . . . 4 . . . . 4 
-                . 4 . . . . . . . . 4 . . . . 4 
-                . 4 . . . . . . . . 4 . . . . 4 
-                . 4 . . . . . . . . 4 . . . . 4 
-                . 4 . . . . . . . . 4 . . . . 4 
-                . 4 . . . . . . . . 4 . . . . 4 
-                . 4 4 4 4 4 . . . . 4 . . . . 4 
-                . . . . . . . . . . . . . . . 4 
-                . . . . . . . . . . . . . . . 4 
-                4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
-                `)
-        }
-        if (itembutton == 0) {
-            itembutton_left.setImage(img`
-                4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
-                4 . . . . . . . . . . . . . . . 
-                4 . . . . . . . 4 4 4 4 4 . 4 4 
-                4 . . . . . . . . . 4 . . . . . 
-                4 . 4 . 4 . 4 . . . 4 . . . . . 
-                4 . . 4 4 4 . . . . 4 . . . . . 
-                4 . . . 4 . . . . . 4 . . . . . 
-                4 . . 4 4 4 . . . . 4 . . . . . 
-                4 . . 4 4 4 4 . . . 4 . . . . . 
-                4 . 4 4 . . 4 4 . . 4 . . . . . 
-                4 . 4 . 4 4 . 4 . . 4 . . . . . 
-                4 . 4 . 4 4 . 4 . . 4 . . . . . 
-                4 . . 4 . . 4 4 4 4 4 4 4 . . . 
-                4 . . . 4 4 4 . . . . . . . . . 
-                4 . . . . . . . . . . . . . . . 
-                4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
-                `)
-            itembutton_right.setImage(img`
-                4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
-                . . . . . . . . . . . . . . . 4 
-                4 4 4 4 . 4 4 4 4 . 4 . . . 4 4 
-                . 4 . . . 4 . . . . 4 4 . 4 4 4 
-                . 4 . . . 4 . . . . 4 4 . 4 4 4 
-                . 4 . . . 4 . . . . 4 . 4 . 4 4 
-                . 4 . . . 4 . . . . 4 . . . 4 4 
-                . 4 . . . 4 4 4 4 . 4 . . . 4 4 
-                . 4 . . . 4 . . . . 4 . . . 4 4 
-                . 4 . . . 4 . . . . 4 . . . 4 4 
-                . 4 . . . 4 . . . . 4 . . . 4 4 
-                . 4 . . . 4 . . . . 4 . . . 4 4 
-                . 4 . . . 4 . . . . 4 . . . 4 4 
-                . 4 . . . 4 4 4 4 . 4 . . . 4 4 
-                . . . . . . . . . . . . . . . 4 
-                4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
-                `)
-        }
-        if (mercybutton == 0) {
-            mercybutton_left.setImage(img`
-                4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
-                4 . . . . . . . . . . . . . . . 
-                4 . . . . . . . 4 . . . 4 . 4 4 
-                4 . . . . . . . 4 4 . 4 4 . 4 . 
-                4 . 4 . . . 4 . 4 4 . 4 4 . 4 . 
-                4 . . 4 . 4 . . 4 . 4 . 4 . 4 . 
-                4 . . 4 . 4 . . 4 . . . 4 . 4 . 
-                4 . . . 4 . . . 4 . . . 4 . 4 4 
-                4 . . . 4 . . . 4 . . . 4 . 4 . 
-                4 . . 4 . 4 . . 4 . . . 4 . 4 . 
-                4 . . 4 . 4 . . 4 . . . 4 . 4 . 
-                4 . 4 . . . 4 . 4 . . . 4 . 4 . 
-                4 . . . . . . . 4 . . . 4 . 4 . 
-                4 . . . . . . . 4 . . . 4 . 4 4 
-                4 . . . . . . . . . . . . . . . 
-                4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
-                `)
-            mercybutton_right.setImage(img`
-                4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
-                . . . . . . . . . . . . . . . 4 
-                4 4 . 4 4 4 . . 4 4 4 . 4 . 4 4 
-                . . . 4 . . 4 . 4 . . . 4 . 4 4 
-                . . . 4 . . 4 . 4 . . . 4 . 4 4 
-                . . . 4 . . 4 . 4 . . . 4 . 4 4 
-                . . . 4 . 4 . . 4 . . . . 4 . 4 
-                4 4 . 4 4 . . . 4 . . . . 4 . 4 
-                . . . 4 . 4 . . 4 . . . . 4 . 4 
-                . . . 4 . . 4 . 4 . . . . 4 . 4 
-                . . . 4 . . 4 . 4 . . . . 4 . 4 
-                . . . 4 . . 4 . 4 . . . . 4 . 4 
-                . . . 4 . . 4 . 4 . . . . 4 . 4 
-                4 4 . 4 . . 4 . 4 4 4 . . 4 . 4 
-                . . . . . . . . . . . . . . . 4 
-                4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 
-                `)
-        }
-    }
 })
